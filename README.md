@@ -1,52 +1,63 @@
+# Face Detection for Digital Cameras — OpenCV + Scikit-learn
 
-# Face Detection for Digital Cameras
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?logo=python&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.x-5C3EE8?logo=opencv&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML%20Pipeline-F7931E?logo=scikit-learn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-F37626?logo=jupyter&logoColor=white)
 
-🎯 **Project Objective:**
+## Overview
 
-The goal of this project is to develop a reliable facial identification system utilizing machine learning and computer vision techniques. This system is engineered to detect faces within an image and provide the coordinates of the bounding boxes around them. Designed to operate efficiently even on digital cameras with limited computing capabilities, the project ensures broad compatibility and accessibility across various hardware platforms.
+Facial detection system designed to operate within the **computational constraints of consumer-grade digital cameras**.
+The project focuses on selecting and building a lightweight ML model capable of accurately localising faces in images and returning bounding box coordinates — without requiring a GPU or high-end hardware.
 
-## Key Achievements
+The work involved systematic literature research to identify algorithms offering the best accuracy-to-compute trade-off, followed by full pipeline implementation using OpenCV and Scikit-learn.
 
-🔍 **Data Mastery:**
-  - Selected and prepared a public facial recognition dataset tailored to the project’s needs.
-  - Enhanced data quality through rigorous cleaning, normalization, and precise bounding box annotation.
+---
 
-🌟 **Challenging Task Conquered:**
-  - Developed a facial detection model capable of performing accurately under the constraints of limited computational resources.
-  - Implemented a system that can be integrated seamlessly into digital cameras, enhancing user interaction through real-time face detection.
+## Results
 
-💡 **Innovative Approaches:**
-  - Conducted extensive literature research to select machine learning models that are both effective and computationally inexpensive, ensuring the system's feasibility for use in consumer-grade cameras.
-  - Employed state-of-the-art data preprocessing and feature extraction techniques to maintain high accuracy while minimizing computational demands.
+| Metric | Value |
+|--------|-------|
+| Detection approach | Haar Cascade + ML classifier |
+| Pipeline | Scikit-learn end-to-end |
+| Bounding box output | (x, y, width, height) per face |
+| Target hardware | Low-power embedded / consumer camera |
+| Cross-validation | k-fold applied during model selection |
 
-## Detailed Project Workflow
+---
 
-🔍 **Dataset Research and Selection:**
-  - Identified and selected a public facial recognition dataset suitable for the project's objectives.
-  - Prepared the data for training, including necessary cleaning, normalization, and bounding box annotation.
+## Project Workflow
 
-📊 **Data Exploration and Preparation:**
-  - Analyzed the dataset to understand its characteristics and potential challenges.
-  - Implemented necessary preprocessing procedures to prepare the data for training.
+1. **Dataset research & selection** — identified a public facial recognition dataset with diverse demographics and precise bounding box annotations
+2. **Data preparation** — image normalisation, bounding box annotation, augmentation for class balance
+3. **Literature review** — evaluated lightweight detection models (Haar Cascade, HOG+SVM, MTCNN) by accuracy and compute cost
+4. **Pipeline construction** — Scikit-learn pipeline integrating preprocessing, feature extraction, and model inference
+5. **Cross-validation & tuning** — k-fold cross-validation to select and optimise the final model
+6. **Prediction output** — model returns face coordinates as bounding boxes for each detected face in the input image
 
-🛠️ **Model Choice and Training:**
-  - Conducted literature research to identify the most suitable and computationally light machine learning models.
-  - Developed and trained the model on the selected dataset, performing cross-validation to test its effectiveness.
+---
 
-⚙️ **Prediction Pipeline Implementation:**
-  - Created a scikit-learn pipeline integrating data preprocessing, feature extraction, and model inference stages.
-  - Optimized the pipeline to maximize performance while keeping computational requirements low.
+## Key Design Decisions
 
-## Your Experience Journey
+- **Lightweight model selection**: prioritised inference speed over peak accuracy to meet embedded hardware constraints
+- **Scikit-learn pipeline**: all stages (preprocessing → feature extraction → inference) encapsulated in a single reproducible pipeline object
+- **Bounding box regression**: model trained to output precise spatial coordinates rather than just a detection flag
 
-📊 **Key Dataset Properties:**
-  - The dataset features a variety of facial images across diverse demographics, posing unique challenges in variability and complexity.
-  - Annotations include precise bounding boxes, crucial for training the model to locate and recognize faces accurately.
+---
 
-🔮 **Your Impact:**
-  - Directly contributed to advancing the field of digital imaging in consumer electronics by enabling sophisticated face detection capabilities.
-  - Pushed the boundaries of what's possible with machine learning on devices with limited processing power, setting a new standard for accessibility and performance.
+## Setup
 
-## Explore My Code
+```bash
+git clone https://github.com/sylver86/08-face-detection-camera-opencv.git
+cd 08-face-detection-camera-opencv
+pip install opencv-python scikit-learn pandas numpy jupyter
+jupyter notebook
+```
 
-🔗 **GitHub Repository:** Dive into the codebase (Notebook file .ipynb) to discover the journey of crafting a cutting-edge face detection system. Understand the detailed steps taken, from dataset preparation to model training and pipeline optimization. See how each phase contributes to a reliable and efficient product, ready for integration into digital cameras.
+Open `Face Detection per Fotocamere Digitali.ipynb` and run all cells.
+
+---
+
+## Technologies
+
+`Python` · `OpenCV 4.x` · `Scikit-learn` · `NumPy` · `Pandas` · `Jupyter`
